@@ -9,6 +9,7 @@ cache = redis.StrictRedis(host='redis', port=6379, db=0)
 salt = "UNIQUE_SALT" 
 default_name = 'Joe Bloggs'
 
+
 @app.route('/', methods=['GET', 'POST'])
 def mainpage():
 
@@ -42,7 +43,7 @@ def get_identicon(name):
             image = r.content
             cache.set(name, image)
             
-            return Response(image, mimetype='image/png')
+        return Response(image, mimetype='image/png')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
